@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SOM</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="dist/index.bundle.js"></script>
+  <script src="app/main.js"></script>
+</head>
+
+<body>
+  <div ng-app="somVisualization" ng-controller="appController">
+    <row>
+      <div class="col-sm-4">
+        <distribution-map
+          data="data"
+          colors="getDistributionMapColors"
+          color-scale="distributionMapColorScale"
+          get-maps="getDistributionMaps"
+          get-header="getDistributionMapHeader"
+          get-rows="getDistributionMapRows"
+          get-cells="getDistributionMapCells"
+          get-weight="getDistributionMapWeight"
+          get-scaled-weight="getDistributionMapScaledWeight"
+          get-label="getDistributionMapLabel"
+          click-fn="distributionMapClickFn"
+        >
+        </distribution-map>
+      </div>
+      <div class="col-sm-8">
+        <visualization-map
+          data="data"
+          get-map="getVisualizationMap"
+          get-cells="getVisualizationMapCells"
+          get-features="getVisualizationMapFeatures"
+          get-label="getVisualizationMapLabel"
+          get-labels="getVisualizationMapLabels"
+          get-feature-weight="getVisualizationMapFeatureWeight"
+          get-feature-scaled-weight="getVisualizationMapFeatureScaledWeight"
+          max-weight=1
+          get-feature-name="getVisualizationMapFeatureName"
+          get-feature-names="getVisualizationMapFeatureNames"
+          feature-colors="visualizationMapFeatureColors"
+          label-colors="visualizationMapLabelColors"
+          click-fn="visualizationMapClickFn"
+        >
+        </visualization-map>
+      </div>
+    </row>
+    <button ng-click="getFittedModel()">Test</button>
+  </div>
+</body>
+
+</html>

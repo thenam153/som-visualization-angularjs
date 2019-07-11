@@ -1,0 +1,123 @@
+visualization-map .visualization-map {
+  background-color: greenyellow;
+}
+
+visualization-map .map {
+  margin: 5px;
+  background-color: pink;
+}
+
+visualization-map .map-header {
+  text-align: center;
+}
+
+visualization-map .map-row {
+  display: flex;
+  border: 1px solid red;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+visualization-map .map-col {
+  position: relative;
+  width: 100%;
+  /* padding-right: 15px;
+  padding-left: 15px; */
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+  
+  border: 1px solid blue;
+  padding: 0;
+}
+
+visualization-map .map-cell {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+visualization-map .map-cell-element {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+visualization-map .map-cell-element:hover {
+  border: 2px solid red;
+}
+
+visualization-map .map-chart {
+  padding: 5%;
+  width: 100%;
+  height: 100%;
+}
+
+visualization-map .map-cell .map-cell-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 105%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+visualization-map .map-cell .map-cell-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+visualization-map .map-cell:hover .map-cell-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+visualization-map .map-legend-row {
+  display: flex;
+  /* border: 1px solid red; */
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  vertical-align: middle;
+}
+
+visualization-map .map-legend-col {
+  position: relative;
+  width: 100%;
+  /* padding-right: 15px;
+  padding-left: 15px; */
+  -webkit-flex-basis: 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+  
+  text-align: center;
+  /* border: 1px solid blue;
+  padding: 0; */
+}
