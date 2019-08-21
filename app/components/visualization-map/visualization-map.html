@@ -1,73 +1,77 @@
+<div style="position: absolute; top: 40px; right: 25px;">
+  <div style="display: flex; align-items: center;">
+    <div class="btn-fn">
+        <div class="toolbar-btn" ng-show="self.type==='pie'" ng-click="self.chartType=0; self.type='bar'">Bar chart</div>
+        <div class="toolbar-btn" ng-show="self.type==='bar'" ng-click="self.chartType=1; self.type='pie'">Pie chart</div>
+        <div class="toolbar-btn" ng-class="{'active-btn': self.chartHide}" ng-click="self.chartHide=!self.chartHide">Hide chart</div>
+        <div class="toolbar-btn" ng-class="{'active-btn': self.labelHide}" ng-click="self.labelHide=!self.labelHide">Hide label</div>
+    </div>
+  </div>
+</div>
+<div class="map-legend" style="display: none;">
+  <div class="map-legend-row">
+    <div class="map-legend-col" ng-style="{'background-color': self.getLabelColor(label)}"
+      ng-repeat="(i, label) in self.getLabels(self.data) track by i">
+      <p style="margin: 0 0 0">
+        {{label}}</p>
+    </div>
+
+  </div>
+  <div class="map-legend-row">
+    <p class="map-legend-col" ng-repeat="(i, featureName) in self.getFeatureNames(self.data) track by i">
+      {{featureName}}
+      <span ng-style="{
+        'background-color': self.getFeatureColor(i),
+        'display': 'inline-block',
+        'width': '10%',
+        'height': '50%'
+      }">
+      </span>
+    </p>
+  </div>
+</div>
 <div class="visualization-map">
-  <h3>Visualization Map</h3>
+  <!-- <h3>Visualization Map</h3> -->
   <!-- Map -->
   <div class="map">
-    <div class="map-row" ng-repeat="row in self.getMap(self.data)">
-      <div class="map-col" ng-repeat="cell in self.getCells(row)"
-        ng-style="{'background-color': self.getLabelColor(self.getLabel(cell))}">
-        <div class="map-cell" ng-click="self.clickFn($event, cell)">
-          <div class="map-cell-tooltip" ng-show="!self.weightHide">
-            <span ng-repeat="feature in self.getFeatures(cell)">
-              {{self.getFeatureName(feature)}}: {{self.getFeatureWeight(feature)}}
-            </span>
-          </div>
-          <div class="map-cell-element">
-            <div class="map-chart" ng-show="!self.chartHide">
-              <svg width="100%" height="100%" viewBox="0 0 100 100">
-                <g ng-show="!self.chartType">
-                  <rect ng-repeat="(k, feature) in self.getFeatures(cell) track by k"
-                    ng-attr-x="{{k * 100 / self.getFeatures(cell).length}}"
-                    ng-attr-y="{{(self.maxWeight - self.getFeatureScaledWeight(feature)) / self.maxWeight * 100}}"
-                    ng-attr-width="{{100 / self.getFeatures(cell).length}}"
-                    ng-attr-height="{{self.getFeatureScaledWeight(feature) / self.maxWeight * 100}}%" fill={{self.getFeatureColor(k)}}>
-                  </rect>
-                </g>
-                <g ng-show="self.chartType==1">
-                  <path ng-repeat="(k, feature) in self.getFeatures(cell) track by k"
-                    ng-attr-fill="{{self.getFeatureColor(k)}}"
-                    ng-attr-d="{{self.describeArc(50, 50, self.getFeatureScaledWeight(feature) / self.maxWeight * 50, k * 360 / self.getFeatures(cell).length, (k + 1) * 360 / self.getFeatures(cell).length)}}">
-                  </path>
-                </g>
-              </svg>
+      <p class="map-header">Visualization Map</p>
+      <div style="overflow: hidden auto; height: calc(100% - 50px);">
+          <div class="map-row" ng-repeat="row in self.getMap(self.data)">
+            <div class="map-col" ng-repeat="cell in self.getCells(row)"
+              ng-style="{'background-color': self.getLabelColor(self.getLabel(cell))}">
+              <div class="map-cell" ng-click="self.clickFn($event, cell)">
+                <div class="map-cell-tooltip" ng-show="!self.weightHide">
+                  <span ng-repeat="feature in self.getFeatures(cell)">
+                    {{self.getFeatureName(feature)}}: {{self.getFeatureWeight(feature)}}
+                  </span>
+                </div>
+                <div class="map-cell-element">
+                  <div class="map-chart" ng-show="!self.chartHide">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100">
+                      <g ng-show="!self.chartType">
+                        <rect ng-repeat="(k, feature) in self.getFeatures(cell) track by k"
+                          ng-attr-x="{{k * 100 / self.getFeatures(cell).length}}"
+                          ng-attr-y="{{(self.maxWeight - self.getFeatureScaledWeight(feature)) / self.maxWeight * 100}}"
+                          ng-attr-width="{{100 / self.getFeatures(cell).length}}"
+                          ng-attr-height="{{self.getFeatureScaledWeight(feature) / self.maxWeight * 100}}%" fill={{self.getFeatureColor(k)}}>
+                        </rect>
+                      </g>
+                      <g ng-show="self.chartType==1">
+                        <path ng-repeat="(k, feature) in self.getFeatures(cell) track by k"
+                          ng-attr-fill="{{self.getFeatureColor(k)}}"
+                          ng-attr-d="{{self.describeArc(50, 50, self.getFeatureScaledWeight(feature) / self.maxWeight * 50, k * 360 / self.getFeatures(cell).length, (k + 1) * 360 / self.getFeatures(cell).length)}}">
+                        </path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="map-cell-element" ng-show="!self.labelHide">
+                  {{self.getLabel(cell)}}
+                </div>
+              </div>
             </div>
           </div>
-          <div class="map-cell-element" ng-show="!self.labelHide">
-            {{self.getLabel(cell)}}
-          </div>
-        </div>
       </div>
-    </div>
   </div>
-  <!-- Legend -->
-  <div class="map-legend">
-    <div class="map-legend-row">
-      <div class="map-legend-col" ng-style="{'background-color': self.getLabelColor(label)}"
-        ng-repeat="(i, label) in self.getLabels(self.data) track by i">
-        <p style="margin: 0 0 0">
-          {{label}}</p>
-      </div>
-
-    </div>
-    <div class="map-legend-row">
-      <p class="map-legend-col" ng-repeat="(i, featureName) in self.getFeatureNames(self.data) track by i">
-        {{featureName}}
-        <span ng-style="{
-          'background-color': self.getFeatureColor(i),
-          'display': 'inline-block',
-          'width': '10%',
-          'height': '50%'
-        }">
-        </span>
-      </p>
-    </div>
-  </div>
-
-  <!-- Options -->
-  <div>
-    <button ng-click="self.chartType=0">Bar chart</button>
-    <button ng-click="self.chartType=1">Pie chart</button><br>
-    <input type="checkbox" ng-click="self.chartHide=!self.chartHide" checked>Show charts<br>
-    <input type="checkbox" ng-click="self.labelHide=!self.labelHide" checked>Show labels<br>
-    <input type="checkbox" ng-click="self.weightHide=!self.weightHide" checked>Show weights<br>
-  </div>
+ 
 </div>

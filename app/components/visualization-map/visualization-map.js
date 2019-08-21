@@ -27,7 +27,7 @@ angular.module(moduleName, []).component('visualizationMap', {
 
 function visualizationMapController() {
   let self = this;
-
+  self.type='pie';
   this.$onInit = function () {
     // self.getFeautreNames();
   }
