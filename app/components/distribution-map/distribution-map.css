@@ -205,6 +205,6 @@ input:checked+.slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-p {
+distribution-map p {
   margin: unset !important;
 }
