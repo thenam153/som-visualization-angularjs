@@ -57,7 +57,7 @@ heat-map .map-row {
 
 heat-map .map-col {
     /* margin: 5px; */
-    border-radius: 2px;
+    /* border-radius: 2px; */
     position: relative;
     display: flex;
     align-items: center;
