@@ -1,82 +1,82 @@
 heat-map .heat-map {
     /* background-color: greenyellow; */
     display: flex;
-      height: 100%;
-  }
-  heat-map .btn-fn {
-    display    : flex;
+    height: 100%;
+}
+
+heat-map .btn-fn {
+    display: flex;
     font-weight: bold;
-    color      : #A5ACB4;
-    cursor     : pointer;
-    transition : all ease-in 0.2s;
-    top        : 40px;
-    z-index    : 3;
-    right      : 40px;
+    color: #A5ACB4;
+    cursor: pointer;
+    transition: all ease-in 0.2s;
+    top: 40px;
+    z-index: 3;
+    right: 40px;
     user-select: none;
-  }
-  
-  heat-map .toolbar-btn {
-      border       : 1px solid #A5ACB4;
-      border-radius: 2px;
-      margin-left  : 15px;
-      padding      : 8px 20px;
-      cursor       : pointer;
-  }
-  
-  heat-map .active-btn {
-    color       : #fff;
-    background  : #4b7def;
+}
+
+heat-map .toolbar-btn {
+    border: 1px solid #A5ACB4;
+    border-radius: 2px;
+    margin-left: 15px;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+heat-map .active-btn {
+    color: #fff;
+    background: #4b7def;
     border-color: #4b7def;
     transition: all ease-in 0.2s;
-  }
-  
-  heat-map .map {
+}
+
+heat-map .map {
     margin: 0 0 10px 10px;
     padding: 10px;
     border-radius: 2px;
     background-color: white;
-  }
-  
-  heat-map .map-header {
+}
+
+heat-map .map-header {
     text-align: center;
     padding: 10px;
     border-bottom: 1px solid #edeff3;
     margin-bottom: 10px !important;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  heat-map .map-row {
+}
+
+heat-map .map-row {
     display: flex;
     /* border: 1px solid red; */
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-  }
-  
-  heat-map .map-col {
+}
+
+heat-map .map-col {
     /* margin: 5px; */
     border-radius: 2px;
     position: relative;
-    
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     /* flex-grow: 1; */
-  }
-  
-  heat-map .map-cell {
+}
+
+heat-map .map-cell {
     border: 1px solid #ccc;
     border-radius: 2px;
     /* width: 60px;
     height: 60px; */
     /* padding-top: 100%; */
     /* position: relative; */
-  }
-  
-  heat-map .map-cell-element {
+}
+
+heat-map .map-cell-element {
     /* position: absolute;
     top: 0;
     bottom: 0;
@@ -85,18 +85,18 @@ heat-map .heat-map {
     text-align: center;
     font-size: 10px;
     padding: 5px;
-  }
-  
-  heat-map .map-cell-element:hover {
+}
+
+heat-map .map-cell-element:hover {
     /* border: 2px solid red; */
-  }
-  
-  heat-map .map-chart {
+}
+
+heat-map .map-chart {
     width: 60px;
     height: 60px;
-  }
-  
-  heat-map .map-cell .map-cell-tooltip {
+}
+
+heat-map .map-cell .map-cell-tooltip {
     visibility: hidden;
     width: 120px;
     background-color: #555;
@@ -111,9 +111,9 @@ heat-map .heat-map {
     margin-left: -60px;
     opacity: 0;
     transition: opacity 0.3s;
-  }
-  
-  heat-map .map-cell .map-cell-tooltip::after {
+}
+
+heat-map .map-cell .map-cell-tooltip::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -122,25 +122,24 @@ heat-map .heat-map {
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
-  
-  heat-map .map-cell:hover .map-cell-tooltip {
+}
+
+heat-map .map-cell:hover .map-cell-tooltip {
     visibility: visible;
     opacity: 1;
-  }
-  
-  heat-map .map-legend-row {
+}
+
+heat-map .map-legend-row {
     display: flex;
     /* border: 1px solid red; */
     width: 100%;
     margin-left: 0;
     margin-right: 0;
     vertical-align: middle;
-  }
-  
-  heat-map .map-legend-col {
+}
+
+heat-map .map-legend-col {
     display: flex;
     align-items: center;
     margin-left: 20px;
-  }
-  
+}
