@@ -1,0 +1,29 @@
+<div style="position: absolute; top: 40px; right: 40px;">
+  <div class="heat-map">
+    <div class="map">
+        <div class="map-header">
+          <div class="map-legend-col" ng-repeat="(i, featureName) in self.getFeatureNames(self.data) track by i">
+            {{featureName}}
+            <span ng-style="{
+              'background-color': self.getFeatureColor(i),
+              'display': 'inline-block',
+              'width': '15px',
+              'height': '15px',
+              'border-radius': '50%',
+              'margin-left': '7px'
+            }">
+            </span>
+          </div>
+        </div>
+        <div style="overflow: hidden auto; height: calc(100% - 50px);">
+            <div class="map-row" ng-repeat="(k, row) in self.getMap(self.data) track by k">
+              <div class="map-col" ng-repeat="(h, cell) in self.getCells(row)"
+                ng-style="{'background-color': self.getLabelColor(k, h)}">
+                <div class="map-cell" ng-click="self.clickFn($event, cell)">
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+   
+  </div>

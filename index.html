@@ -15,10 +15,39 @@
   <div ng-app="somVisualization" ng-controller="appController">
     <row>
       <div class="col-sm-4">
-       
+        <visualization-map
+          data="data"
+          get-map="getVisualizationMap"
+          get-cells="getVisualizationMapCells"
+          get-features="getVisualizationMapFeatures"
+          get-label="getVisualizationMapLabel"
+          get-labels="getVisualizationMapLabels"
+          get-feature-weight="getVisualizationMapFeatureWeight"
+          get-feature-scaled-weight="getVisualizationMapFeatureScaledWeight"
+          max-weight=1
+          get-feature-name="getVisualizationMapFeatureName"
+          get-feature-names="getVisualizationMapFeatureNames"
+          feature-colors="visualizationMapFeatureColors"
+          label-colors="visualizationMapLabelColors"
+          click-fn="visualizationMapClickFn"
+        >
+        </visualization-map>
       </div>
       <div class="col-sm-8">
-      
+        <heat-map
+          data="data"
+          get-map="getVisualizationMap"
+          get-cells="getVisualizationMapCells"
+          get-features="getVisualizationMapFeatures"
+          get-label="getVisualizationMapLabel"
+          get-labels="getVisualizationMapLabels"
+          max-weight=1
+          get-feature-name="getVisualizationMapFeatureName"
+          get-feature-names="getVisualizationMapFeatureNames"
+          feature-colors="heatmapColors"
+          label-colors="heatmapColors"
+        >
+        </heat-map>
       </div>
     </row>
     <button ng-click="getFittedModel()">Test</button>

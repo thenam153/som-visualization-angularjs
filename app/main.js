@@ -3,179 +3,13 @@ const appName = "somVisualization";
 const app = angular.module(appName, [
   'distributionMapModule',
   'visualizationMapModule',
-  'somModelService'
+  'somModelService',
+  'heatMap'
 ]);
 
 app.controller('appController', function ($scope, somModelService) {
   // Demo data
-  $scope.dataDemo = {
-    distributionMaps: [
-      {
-        header: "DT",
-        rows: [
-          {
-            cells: [
-              { weight: 0.1, scaledWeight: 0.1, label: 1 },
-              { weight: 0.15, scaledWeight: 0.15, label: 2 },
-              { weight: 0.17, scaledWeight: 0.17, label: 3 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 0.2, scaledWeight: 0.2, label: 2 },
-              { weight: 0.3, scaledWeight: 0.3, label: 3 },
-              { weight: 0.44, scaledWeight: 0.44, label: 1 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 0.5, scaledWeight: 0.5, label: 1 },
-              { weight: 0.4, scaledWeight: 0.4, label: 2 },
-              { weight: 0.3, scaledWeight: 0.3, label: 1 }
-            ]
-          }
-        ]
-      },
-      {
-        header: "GR",
-        rows: [
-          {
-            cells: [
-              { weight: 0.2, scaledWeight: 0.2, label: 1 },
-              { weight: 0.3, scaledWeight: 0.3, label: 2 },
-              { weight: 0.4, scaledWeight: 0.4, label: 3 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 0.6, scaledWeight: 0.6, label: 2 },
-              { weight: 0.44, scaledWeight: 0.44, label: 3 },
-              { weight: 0.5, scaledWeight: 0.5, label: 1 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 0.7, scaledWeight: 0.7, label: 1 },
-              { weight: 0.46, scaledWeight: 0.46, label: 2 },
-              { weight: 0.9, scaledWeight: 0.9, label: 1 }
-            ]
-          }
-        ]
-      },
-      {
-        header: "NPHI",
-        rows: [
-          {
-            cells: [
-              { weight: 0.3, scaledWeight: 0.3, label: 1 },
-              { weight: 0.4, scaledWeight: 0.4, label: 2 },
-              { weight: 0.5, scaledWeight: 0.5, label: 3 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 1, scaledWeight: 1, label: 2 },
-              { weight: 0.1, scaledWeight: 0.1, label: 3 },
-              { weight: 0.45, scaledWeight: 0.45, label: 1 }
-            ]
-          },
-          {
-            cells: [
-              { weight: 0.6, scaledWeight: 0.6, label: 1 },
-              { weight: 0.6, scaledWeight: 0.6, label: 2 },
-              { weight: 0.8, scaledWeight: 0.8, label: 1 }
-            ]
-          }
-        ]
-      }
-    ],
-    visualizationMap: [
-      {
-        cells: [
-          {
-            features: [
-              { weight: 0.1, scaledWeight: 0.1, header: 'DT' },
-              { weight: 0.2, scaledWeight: 0.2, header: 'GR' },
-              { weight: 0.3, scaledWeight: 0.3, header: 'NPHI' }
-            ],
-            label: 1
-          },
-          {
-            features: [
-              { weight: 0.15, scaledWeight: 0.15, header: 'DT' },
-              { weight: 0.3, scaledWeight: 0.3, header: 'GR' },
-              { weight: 0.4, scaledWeight: 0.4, header: 'NPHI' }
-            ],
-            label: 2
-          },
-          {
-            features: [
-              { weight: 0.17, scaledWeight: 0.17, header: 'DT' },
-              { weight: 0.4, scaledWeight: 0.4, header: 'GR' },
-              { weight: 0.5, scaledWeight: 0.5, header: 'NPHI' }
-            ],
-            label: 3
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            features: [
-              { weight: 0.2, scaledWeight: 0.2, header: 'DT' },
-              { weight: 0.6, scaledWeight: 0.6, header: 'GR' },
-              { weight: 1, scaledWeight: 1, header: 'NPHI' }
-            ],
-            label: 2
-          },
-          {
-            features: [
-              { weight: 0.3, scaledWeight: 0.3, header: 'DT' },
-              { weight: 0.44, scaledWeight: 0.44, header: 'GR' },
-              { weight: 0.4, scaledWeight: 0.4, header: 'NPHI' }
-            ],
-            label: 3
-          },
-          {
-            features: [
-              { weight: 0.44, scaledWeight: 0.44, header: 'DT' },
-              { weight: 0.5, scaledWeight: 0.5, header: 'GR' },
-              { weight: 0.45, scaledWeight: 0.45, header: 'NPHI' }
-            ],
-            label: 1
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            features: [
-              { weight: 0.5, scaledWeight: 0.5, header: 'DT' },
-              { weight: 0.7, scaledWeight: 0.7, header: 'GR' },
-              { weight: 0.6, scaledWeight: 0.6, header: 'NPHI' }
-            ],
-            label: 1
-          },
-          {
-            features: [
-              { weight: 0.4, scaledWeight: 0.4, header: 'DT' },
-              { weight: 0.46, scaledWeight: 0.46, header: 'GR' },
-              { weight: 0.6, scaledWeight: 0.6, header: 'NPHI' }
-            ],
-            label: 2
-          },
-          {
-            features: [
-              { weight: 0.3, scaledWeight: 0.3, header: 'DT' },
-              { weight: 0.9, scaledWeight: 0.9, header: 'GR' },
-              { weight: 0.8, scaledWeight: 0.8, header: 'NPHI' }
-            ],
-            label: 1
-          }
-        ]
-      }
-    ]
-  }
+  $scope.dataDemo = {"distributionMaps":[{"header":"feature_0","rows":[{"cells":[{"label":2,"scaledWeight":0.2,"weight":80.01},{"label":2,"scaledWeight":0.47,"weight":191.13},{"label":2,"scaledWeight":0.33,"weight":133.04},{"label":2,"scaledWeight":0.41,"weight":165.62},{"label":2,"scaledWeight":0.27,"weight":110.74},{"label":2,"scaledWeight":0.47,"weight":189.13},{"label":2,"scaledWeight":0.48,"weight":195.69},{"label":2,"scaledWeight":0.13,"weight":53.44},{"label":2,"scaledWeight":0.19,"weight":75.86},{"label":2,"scaledWeight":0.23,"weight":92.41}]},{"cells":[{"label":2,"scaledWeight":0.25,"weight":103.02},{"label":2,"scaledWeight":0.27,"weight":107.82},{"label":2,"scaledWeight":0.46,"weight":186.84},{"label":2,"scaledWeight":0.38,"weight":154.08},{"label":0,"scaledWeight":0.8,"weight":324.96},{"label":2,"scaledWeight":0.42,"weight":170.6},{"label":2,"scaledWeight":0.24,"weight":96.9},{"label":2,"scaledWeight":0.46,"weight":185.82},{"label":2,"scaledWeight":0.29,"weight":116.68},{"label":2,"scaledWeight":0.37,"weight":150.92}]},{"cells":[{"label":2,"scaledWeight":0.24,"weight":97.89},{"label":2,"scaledWeight":0.29,"weight":116.97},{"label":2,"scaledWeight":0.29,"weight":118.12},{"label":0,"scaledWeight":1,"weight":404.6},{"label":0,"scaledWeight":0.85,"weight":345.67},{"label":0,"scaledWeight":0.8,"weight":324.96},{"label":2,"scaledWeight":0.23,"weight":93.19},{"label":2,"scaledWeight":0.22,"weight":90.26},{"label":0,"scaledWeight":0.47,"weight":189.78},{"label":1,"scaledWeight":0.04,"weight":16.49}]},{"cells":[{"label":2,"scaledWeight":0.29,"weight":115.86},{"label":2,"scaledWeight":0.29,"weight":115.86},{"label":2,"scaledWeight":0.29,"weight":115.86},{"label":0,"scaledWeight":0.55,"weight":223.05},{"label":0,"scaledWeight":0.8,"weight":324.96},{"label":0,"scaledWeight":0.79,"weight":318.02},{"label":2,"scaledWeight":0.23,"weight":92.65},{"label":1,"scaledWeight":0.11,"weight":43.67},{"label":1,"scaledWeight":0.03,"weight":13.7},{"label":1,"scaledWeight":0.04,"weight":15.96}]},{"cells":[{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.47,"weight":192.09},{"label":0,"scaledWeight":0.48,"weight":194.46},{"label":0,"scaledWeight":0.39,"weight":158.43},{"label":2,"scaledWeight":0.13,"weight":52.68},{"label":2,"scaledWeight":0.12,"weight":50.38},{"label":2,"scaledWeight":0.12,"weight":50.38},{"label":1,"scaledWeight":0.06,"weight":22.53}]},{"cells":[{"label":1,"scaledWeight":0.01,"weight":3.07},{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.39,"weight":158.43},{"label":0,"scaledWeight":0.39,"weight":158.43},{"label":0,"scaledWeight":0.39,"weight":158.43},{"label":2,"scaledWeight":0.12,"weight":50.38},{"label":1,"scaledWeight":0.06,"weight":22.53},{"label":1,"scaledWeight":0.06,"weight":22.53}]},{"cells":[{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.43,"weight":174.04},{"label":0,"scaledWeight":0.39,"weight":157.48},{"label":2,"scaledWeight":0.21,"weight":83.37},{"label":2,"scaledWeight":0.21,"weight":86.95},{"label":0,"scaledWeight":0.36,"weight":145.99},{"label":1,"scaledWeight":0.06,"weight":22.53}]},{"cells":[{"label":1,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.36,"weight":145.99},{"label":0,"scaledWeight":0.36,"weight":145.99},{"label":0,"scaledWeight":0.36,"weight":145.99}]},{"cells":[{"label":2,"scaledWeight":0.17,"weight":67.8},{"label":2,"scaledWeight":0.18,"weight":73.65},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":2,"scaledWeight":0.42,"weight":168.85},{"label":0,"scaledWeight":0.33,"weight":134.48},{"label":0,"scaledWeight":0.36,"weight":145.99},{"label":0,"scaledWeight":0.35,"weight":142.67}]},{"cells":[{"label":2,"scaledWeight":0.17,"weight":69.25},{"label":2,"scaledWeight":0.17,"weight":68.86},{"label":2,"scaledWeight":0.18,"weight":73.65},{"label":2,"scaledWeight":0.46,"weight":185.19},{"label":3,"scaledWeight":0,"weight":0},{"label":2,"scaledWeight":0.32,"weight":127.86},{"label":2,"scaledWeight":0.38,"weight":155.34},{"label":2,"scaledWeight":0.39,"weight":156.66},{"label":0,"scaledWeight":0.35,"weight":142.67},{"label":2,"scaledWeight":0.27,"weight":110.33}]}]},{"header":"feature_1","rows":[{"cells":[{"label":2,"scaledWeight":0.57,"weight":0.77},{"label":2,"scaledWeight":0.42,"weight":0.57},{"label":2,"scaledWeight":0.27,"weight":0.36},{"label":2,"scaledWeight":0.34,"weight":0.46},{"label":2,"scaledWeight":0.66,"weight":0.89},{"label":2,"scaledWeight":0.26,"weight":0.36},{"label":2,"scaledWeight":0.46,"weight":0.62},{"label":2,"scaledWeight":0.51,"weight":0.69},{"label":2,"scaledWeight":0.3,"weight":0.4},{"label":2,"scaledWeight":0.41,"weight":0.56}]},{"cells":[{"label":2,"scaledWeight":0.26,"weight":0.35},{"label":2,"scaledWeight":0.52,"weight":0.71},{"label":2,"scaledWeight":0.49,"weight":0.66},{"label":2,"scaledWeight":0.5,"weight":0.68},{"label":0,"scaledWeight":1,"weight":1.35},{"label":2,"scaledWeight":0.56,"weight":0.75},{"label":2,"scaledWeight":0.6,"weight":0.81},{"label":2,"scaledWeight":0.39,"weight":0.53},{"label":2,"scaledWeight":0.51,"weight":0.69},{"label":2,"scaledWeight":0.67,"weight":0.9}]},{"cells":[{"label":2,"scaledWeight":0.69,"weight":0.93},{"label":2,"scaledWeight":0.7,"weight":0.94},{"label":2,"scaledWeight":0.55,"weight":0.74},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":1,"weight":1.35},{"label":2,"scaledWeight":0.59,"weight":0.79},{"label":2,"scaledWeight":0.57,"weight":0.77},{"label":0,"scaledWeight":0.69,"weight":0.93},{"label":1,"scaledWeight":0.22,"weight":0.29}]},{"cells":[{"label":2,"scaledWeight":0.69,"weight":0.93},{"label":2,"scaledWeight":0.69,"weight":0.93},{"label":2,"scaledWeight":0.69,"weight":0.93},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":1,"weight":1.35},{"label":2,"scaledWeight":0.58,"weight":0.78},{"label":1,"scaledWeight":0.35,"weight":0.47},{"label":1,"scaledWeight":0.2,"weight":0.27},{"label":1,"scaledWeight":0.21,"weight":0.29}]},{"cells":[{"label":1,"scaledWeight":0.12,"weight":0.16},{"label":1,"scaledWeight":0,"weight":0},{"label":1,"scaledWeight":0.04,"weight":0.05},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":1,"weight":1.35},{"label":0,"scaledWeight":0.9,"weight":1.21},{"label":2,"scaledWeight":0.39,"weight":0.53},{"label":2,"scaledWeight":0.38,"weight":0.51},{"label":2,"scaledWeight":0.38,"weight":0.51},{"label":1,"scaledWeight":0.25,"weight":0.33}]},{"cells":[{"label":1,"scaledWeight":0.15,"weight":0.2},{"label":1,"scaledWeight":0.04,"weight":0.05},{"label":1,"scaledWeight":0.04,"weight":0.05},{"label":1,"scaledWeight":0.04,"weight":0.05},{"label":0,"scaledWeight":0.9,"weight":1.21},{"label":0,"scaledWeight":0.9,"weight":1.21},{"label":0,"scaledWeight":0.9,"weight":1.21},{"label":2,"scaledWeight":0.38,"weight":0.51},{"label":1,"scaledWeight":0.25,"weight":0.33},{"label":1,"scaledWeight":0.25,"weight":0.33}]},{"cells":[{"label":1,"scaledWeight":0.12,"weight":0.16},{"label":1,"scaledWeight":0.07,"weight":0.1},{"label":1,"scaledWeight":0.04,"weight":0.05},{"label":3,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.97,"weight":1.31},{"label":0,"scaledWeight":0.9,"weight":1.2},{"label":2,"scaledWeight":0.54,"weight":0.72},{"label":2,"scaledWeight":0.51,"weight":0.69},{"label":0,"scaledWeight":0.84,"weight":1.13},{"label":1,"scaledWeight":0.25,"weight":0.33}]},{"cells":[{"label":1,"scaledWeight":0.08,"weight":0.1},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":0,"scaledWeight":0.84,"weight":1.13},{"label":0,"scaledWeight":0.84,"weight":1.13},{"label":0,"scaledWeight":0.84,"weight":1.13}]},{"cells":[{"label":2,"scaledWeight":0.46,"weight":0.62},{"label":2,"scaledWeight":0.49,"weight":0.66},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":3,"scaledWeight":0,"weight":0},{"label":2,"scaledWeight":0.35,"weight":0.47},{"label":0,"scaledWeight":0.78,"weight":1.06},{"label":0,"scaledWeight":0.84,"weight":1.13},{"label":0,"scaledWeight":0.82,"weight":1.11}]},{"cells":[{"label":2,"scaledWeight":0.47,"weight":0.63},{"label":2,"scaledWeight":0.47,"weight":0.63},{"label":2,"scaledWeight":0.49,"weight":0.66},{"label":2,"scaledWeight":0.41,"weight":0.56},{"label":3,"scaledWeight":0,"weight":0},{"label":2,"scaledWeight":0.6,"weight":0.81},{"label":2,"scaledWeight":0.6,"weight":0.81},{"label":2,"scaledWeight":0.25,"weight":0.34},{"label":0,"scaledWeight":0.82,"weight":1.11},{"label":2,"scaledWeight":0.57,"weight":0.77}]}]}],"fitted_model":{"inversedCompetitiveWeights":[[80.00636088033524,0.7724983790689323],[191.12911284353032,0.5654173352000431],[133.0390132068819,0.359225683454997],[165.61597150980612,0.4576636697301219],[110.74241780728207,0.8898101262297083],[189.13079378447958,0.35513585074881826],[195.68642521358157,0.6154106836808776],[53.440283093204194,0.6913817124641477],[75.86303508911641,0.39722125437183264],[92.40811507571634,0.55632445325796],[103.02422359236994,0.3532142211726727],[107.82171416125736,0.705626046810457],[186.83822890270582,0.6578385011440404],[154.0832424050622,0.6787922659455089],[324.96403842240136,1.3453304709006901],[170.6038666047239,0.7506552549111495],[96.89998057918653,0.8119654087963087],[185.82035466349245,0.5297042738048019],[116.67949457428553,0.6921341791466677],[150.91716587947735,0.9018756145783159],[97.89278531135628,0.9257793264644382],[116.97316473488019,0.9419392527318315],[118.11617819752581,0.7416581506108011],[404.60139740803345,1.3453304709006904],[345.6709681284211,1.3453304709006901],[324.9640384224014,1.3453304709006901],[93.18622369764701,0.7879188373310247],[90.26147715303587,0.768981106874722],[189.7752893941661,0.9302684771929622],[16.49266848968647,0.2913281570411477],[115.86321490097609,0.9347523288552229],[115.86321490097609,0.9347523288552229],[115.86321490097609,0.9347523288552229],[223.0519455903605,1.3453304709006901],[324.9640384224014,1.3453304709006901],[318.0240671401287,1.3453304709006901],[92.64915119737076,0.784441293519762],[43.66674676199492,0.4672802820783157],[13.699568250171328,0.27324283625640106],[15.960568882931332,0.28788281270961913],[-4.077606102373906,0.1581356531114231],[-47.080458478764726,-0.12030776574028924],[-21.05864506666251,0.048183445674445186],[192.089914865178,1.3453304709006901],[194.46079158028627,1.3453304709006901],[158.42740404231037,1.2103554037728959],[52.68001681107473,0.5256411951064334],[50.3815454256334,0.5107585955734197],[50.3815454256334,0.5107585955734197],[22.525981825196656,0.33039385383351655],[3.0679943269953753,0.20440340753587594],[-21.05864506666251,0.04818344567444523],[-21.05864506666251,0.04818344567444523],[-21.05864506666251,0.048183445674445186],[158.42740404231037,1.2103554037728959],[158.42740404231037,1.2103554037728959],[158.42740404231037,1.2103554037728959],[50.3815454256334,0.5107585955734197],[22.52598182519666,0.33039385383351655],[22.525981825196656,0.33039385383351655],[-4.077606102373906,0.15813565311142314],[-13.614820212834266,0.09638220289854114],[-21.05864506666251,0.04818344567444526],[-84.114238708813,-0.3601014494243724],[174.0371178892271,1.3114282826784507],[157.48185806821303,1.20423299469629],[83.37450586482332,0.724387975836831],[86.95447937383197,0.6891423447936343],[145.99417566091623,1.1298502645421742],[22.52598182519666,0.3303938538335165],[-12.400439614987514,0.10424531584956191],[-72.61893119811722,-0.2856693467346638],[-84.41569551406063,-0.3620533818858424],[-79.3226568855154,-0.3290759627215604],[-144.60773130365828,-0.7517967432378831],[-141.26979256181818,-0.7301835937876896],[-162.66735772004478,-0.8687328031659477],[145.99417566091623,1.1298502645421742],[145.99417566091623,1.1298502645421742],[145.99417566091623,1.1298502645421742],[67.80039793551748,0.6235456452061707],[73.64633264315357,0.661398065602166],[-79.03621821870144,-0.32722127268888723],[-94.48779405164798,-0.4272702081389038],[-93.4676546747344,-0.4206648068662894],[-143.75405124920687,-0.7462691658835616],[168.85015756964526,0.47052778369603265],[134.47894342351273,1.0552891492703316],[145.99417566091623,1.1298502645421742],[142.66969688420664,1.1083242683504608],[69.25009585478158,0.6329324375382006],[68.8640004018052,0.6304324699316598],[73.64633264315357,0.661398065602166],[185.19080825657957,0.5574054546581283],[-116.67701899396219,-0.5709454136934015],[127.86296195788809,0.813471361502633],[155.34042139496583,0.813444383733202],[156.65889236124914,0.3414872594508716],[142.66969688420664,1.1083242683504608],[110.33428334613305,0.7666988273418591]],"nodesLabel":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,0,0,0,2,2,0,1,2,2,2,0,0,0,2,1,1,1,1,1,1,0,0,0,2,2,2,1,1,1,1,1,0,0,0,2,1,1,1,1,1,3,0,0,2,2,0,1,1,3,3,3,3,3,3,0,0,0,2,2,3,3,3,3,2,0,0,0,2,2,2,2,3,2,2,2,0,2]},"message":"successfully","visualizationMap":[{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.2,"weight":80.01},{"header":"feature_1","scaledWeight":0.57,"weight":0.77}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.47,"weight":191.13},{"header":"feature_1","scaledWeight":0.42,"weight":0.57}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.33,"weight":133.04},{"header":"feature_1","scaledWeight":0.27,"weight":0.36}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.41,"weight":165.62},{"header":"feature_1","scaledWeight":0.34,"weight":0.46}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.27,"weight":110.74},{"header":"feature_1","scaledWeight":0.66,"weight":0.89}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.47,"weight":189.13},{"header":"feature_1","scaledWeight":0.26,"weight":0.36}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.48,"weight":195.69},{"header":"feature_1","scaledWeight":0.46,"weight":0.62}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.13,"weight":53.44},{"header":"feature_1","scaledWeight":0.51,"weight":0.69}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.19,"weight":75.86},{"header":"feature_1","scaledWeight":0.3,"weight":0.4}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.23,"weight":92.41},{"header":"feature_1","scaledWeight":0.41,"weight":0.56}],"label":2}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.25,"weight":103.02},{"header":"feature_1","scaledWeight":0.26,"weight":0.35}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.27,"weight":107.82},{"header":"feature_1","scaledWeight":0.52,"weight":0.71}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.46,"weight":186.84},{"header":"feature_1","scaledWeight":0.49,"weight":0.66}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.38,"weight":154.08},{"header":"feature_1","scaledWeight":0.5,"weight":0.68}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.8,"weight":324.96},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.42,"weight":170.6},{"header":"feature_1","scaledWeight":0.56,"weight":0.75}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.24,"weight":96.9},{"header":"feature_1","scaledWeight":0.6,"weight":0.81}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.46,"weight":185.82},{"header":"feature_1","scaledWeight":0.39,"weight":0.53}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":116.68},{"header":"feature_1","scaledWeight":0.51,"weight":0.69}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.37,"weight":150.92},{"header":"feature_1","scaledWeight":0.67,"weight":0.9}],"label":2}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.24,"weight":97.89},{"header":"feature_1","scaledWeight":0.69,"weight":0.93}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":116.97},{"header":"feature_1","scaledWeight":0.7,"weight":0.94}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":118.12},{"header":"feature_1","scaledWeight":0.55,"weight":0.74}],"label":2},{"features":[{"header":"feature_0","scaledWeight":1,"weight":404.6},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.85,"weight":345.67},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.8,"weight":324.96},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.23,"weight":93.19},{"header":"feature_1","scaledWeight":0.59,"weight":0.79}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.22,"weight":90.26},{"header":"feature_1","scaledWeight":0.57,"weight":0.77}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.47,"weight":189.78},{"header":"feature_1","scaledWeight":0.69,"weight":0.93}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.04,"weight":16.49},{"header":"feature_1","scaledWeight":0.22,"weight":0.29}],"label":1}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":115.86},{"header":"feature_1","scaledWeight":0.69,"weight":0.93}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":115.86},{"header":"feature_1","scaledWeight":0.69,"weight":0.93}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.29,"weight":115.86},{"header":"feature_1","scaledWeight":0.69,"weight":0.93}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.55,"weight":223.05},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.8,"weight":324.96},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.79,"weight":318.02},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.23,"weight":92.65},{"header":"feature_1","scaledWeight":0.58,"weight":0.78}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.11,"weight":43.67},{"header":"feature_1","scaledWeight":0.35,"weight":0.47}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0.03,"weight":13.7},{"header":"feature_1","scaledWeight":0.2,"weight":0.27}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0.04,"weight":15.96},{"header":"feature_1","scaledWeight":0.21,"weight":0.29}],"label":1}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.12,"weight":0.16}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.04,"weight":0.05}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0.47,"weight":192.09},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.48,"weight":194.46},{"header":"feature_1","scaledWeight":1,"weight":1.35}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":158.43},{"header":"feature_1","scaledWeight":0.9,"weight":1.21}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.13,"weight":52.68},{"header":"feature_1","scaledWeight":0.39,"weight":0.53}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.12,"weight":50.38},{"header":"feature_1","scaledWeight":0.38,"weight":0.51}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.12,"weight":50.38},{"header":"feature_1","scaledWeight":0.38,"weight":0.51}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.06,"weight":22.53},{"header":"feature_1","scaledWeight":0.25,"weight":0.33}],"label":1}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.01,"weight":3.07},{"header":"feature_1","scaledWeight":0.15,"weight":0.2}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.04,"weight":0.05}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.04,"weight":0.05}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.04,"weight":0.05}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":158.43},{"header":"feature_1","scaledWeight":0.9,"weight":1.21}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":158.43},{"header":"feature_1","scaledWeight":0.9,"weight":1.21}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":158.43},{"header":"feature_1","scaledWeight":0.9,"weight":1.21}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.12,"weight":50.38},{"header":"feature_1","scaledWeight":0.38,"weight":0.51}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.06,"weight":22.53},{"header":"feature_1","scaledWeight":0.25,"weight":0.33}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0.06,"weight":22.53},{"header":"feature_1","scaledWeight":0.25,"weight":0.33}],"label":1}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.12,"weight":0.16}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.07,"weight":0.1}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.04,"weight":0.05}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0.43,"weight":174.04},{"header":"feature_1","scaledWeight":0.97,"weight":1.31}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":157.48},{"header":"feature_1","scaledWeight":0.9,"weight":1.2}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.21,"weight":83.37},{"header":"feature_1","scaledWeight":0.54,"weight":0.72}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.21,"weight":86.95},{"header":"feature_1","scaledWeight":0.51,"weight":0.69}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.36,"weight":145.99},{"header":"feature_1","scaledWeight":0.84,"weight":1.13}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.06,"weight":22.53},{"header":"feature_1","scaledWeight":0.25,"weight":0.33}],"label":1}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0.08,"weight":0.1}],"label":1},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0.36,"weight":145.99},{"header":"feature_1","scaledWeight":0.84,"weight":1.13}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.36,"weight":145.99},{"header":"feature_1","scaledWeight":0.84,"weight":1.13}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.36,"weight":145.99},{"header":"feature_1","scaledWeight":0.84,"weight":1.13}],"label":0}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.17,"weight":67.8},{"header":"feature_1","scaledWeight":0.46,"weight":0.62}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.18,"weight":73.65},{"header":"feature_1","scaledWeight":0.49,"weight":0.66}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0.42,"weight":168.85},{"header":"feature_1","scaledWeight":0.35,"weight":0.47}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.33,"weight":134.48},{"header":"feature_1","scaledWeight":0.78,"weight":1.06}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.36,"weight":145.99},{"header":"feature_1","scaledWeight":0.84,"weight":1.13}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.35,"weight":142.67},{"header":"feature_1","scaledWeight":0.82,"weight":1.11}],"label":0}]},{"cells":[{"features":[{"header":"feature_0","scaledWeight":0.17,"weight":69.25},{"header":"feature_1","scaledWeight":0.47,"weight":0.63}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.17,"weight":68.86},{"header":"feature_1","scaledWeight":0.47,"weight":0.63}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.18,"weight":73.65},{"header":"feature_1","scaledWeight":0.49,"weight":0.66}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.46,"weight":185.19},{"header":"feature_1","scaledWeight":0.41,"weight":0.56}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0,"weight":0},{"header":"feature_1","scaledWeight":0,"weight":0}],"label":3},{"features":[{"header":"feature_0","scaledWeight":0.32,"weight":127.86},{"header":"feature_1","scaledWeight":0.6,"weight":0.81}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.38,"weight":155.34},{"header":"feature_1","scaledWeight":0.6,"weight":0.81}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.39,"weight":156.66},{"header":"feature_1","scaledWeight":0.25,"weight":0.34}],"label":2},{"features":[{"header":"feature_0","scaledWeight":0.35,"weight":142.67},{"header":"feature_1","scaledWeight":0.82,"weight":1.11}],"label":0},{"features":[{"header":"feature_0","scaledWeight":0.27,"weight":110.33},{"header":"feature_1","scaledWeight":0.57,"weight":0.77}],"label":2}]}]}
 
   $scope.data = $scope.dataDemo;
 
@@ -291,6 +125,10 @@ app.controller('appController', function ($scope, somModelService) {
 
   $scope.visualizationMapFeatureColors = [
     'red', 'green', 'blue', 'yellow'
+  ]
+
+  $scope.heatmapColors = [
+    'hsla(100, 90%, 58%, 1)', 'hsla(90, 90%, 58%, 1)', 'hsla(80, 90%, 58%, 1)', 'hsla(70, 90%, 58%, 1)', 'hsla(60, 90%, 58%, 1)', 'hsla(50, 90%, 58%, 1)', 'hsla(40, 90%, 58%, 1)', 'hsla(30, 90%, 58%, 1)', 'hsla(20, 90%, 58%, 1)', 'hsla(10, 90%, 58%, 1)'
   ]
 
   $scope.getFittedModel = function () {
