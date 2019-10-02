@@ -48,7 +48,7 @@ function heatMapController() {
     return parseInt((node/total) * 9);
     } 
   this.getLabelColor = function (x, y) {
-      console.log(x, y, self.data.visualizationMap)
+      // console.log(x, y, self.data.visualizationMap)
     let label = count(x, y, self.data.visualizationMap);
     if (typeof (self.labelColors) === 'object') {
       return self.labelColors[label];
